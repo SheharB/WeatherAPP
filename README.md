@@ -1,201 +1,70 @@
-# WeatherAPP
+# Getting Started with Create React App
 
-///////////App.js//////////////////////
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-import React, { useState, useEffect } from 'react';
-import SearchForm from './SearchForm';
-import WeatherDisplay from './WeatherDisplay';
-import './App.css';
+## Available Scripts
 
-function WeatherApp() {
-  const [location, setLocation] = useState('');
-  const [weatherData, setWeatherData] = useState(null);
-  const [unit, setUnit] = useState('Celsius');
+In the project directory, you can run:
 
-  useEffect(() => {
-    if (location) {
-      fetchWeatherData(location);
-    }
-  }, [location]);
+### `npm start`
 
-  const fetchWeatherData = async (location) => {
-    try {
-      const apiKey = "c4be6804058ca5d52c5146290085c27a";
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
-      const response = await fetch(url);
-      const data = await response.json();
-      if (data.cod !== 200) throw new Error(data.message);
-      setWeatherData(data);
-    } catch (error) {
-      console.error("Failed to fetch weather data:", error);
-      setWeatherData(null); 
-    }
-  };
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-  const handleSearch = (location) => {
-    setLocation(location);
-  };
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-  const toggleUnit = () => {
-    setUnit(unit === 'Celsius' ? 'Fahrenheit' : 'Celsius');
-  };
+### `npm test`
 
-  return (
-    <div>
-      <SearchForm onSearch={handleSearch} />
-      {weatherData && (
-        <WeatherDisplay
-          weatherData={weatherData}
-          unit={unit}
-          onToggleUnit={toggleUnit}
-        />
-      )}
-    </div>
-  );
-}
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-export default WeatherApp;
+### `npm run build`
 
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-/////////////////////////////////////////////////* App.css *///////////////////////////////////////
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f4f9;
-  color: #333;
-  margin: 0;
-  padding: 20px;
-}
+### `npm run eject`
 
-form {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-input[type="text"] {
-  padding: 10px;
-  font-size: 16px;
-  border: 2px solid #ddd;
-  border-radius: 4px;
-  width: 300px;
-  margin-right: 10px;
-}
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #0056b3;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-button:hover {
-  background-color: #004494;
-}
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-div.weather-display {
-  text-align: center;
-  padding: 20px;
-  border-radius: 8px;
-  background-image: linear-gradient(to bottom, #79c7e3, #2b86c5);
-  color: #fff; 
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  width: fit-content;
-  margin: 20px auto;
-  position: relative; 
-  overflow: hidden;
-}
+## Learn More
 
-h2 {
-  color: #333;
-}
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-p {
-  font-size: 18px;
-  line-height: 1.6;
-}
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-p.temperature {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 10px 0;
-}
+### Code Splitting
 
-button.toggle-unit {
-  background-color: #f0f0f0;
-  color: #333;
-  margin-top: 20px;
-}
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-button.toggle-unit:hover {
-  background-color: #e0e0e0;
-}
+### Analyzing the Bundle Size
 
-.weather-display img {
-  max-width: 100px; 
-  height: auto; 
-  display: block;
-  margin: 20px auto; 
-}
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
+### Making a Progressive Web App
 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-/////////////////////////////////////////////SearchForm//////////////////////////////////////////
+### Advanced Configuration
 
-import React, { useState } from 'react';
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-function SearchForm({ onSearch }) {
-  const [inputValue, setInputValue] = useState('');
+### Deployment
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSearch(inputValue);
-  };
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        placeholder="Enter location"
-      />
-      <button type="submit">Search</button>
-    </form>
-  );
-}
+### `npm run build` fails to minify
 
-export default SearchForm;
-
-////////////////////////////////////////////////////// WeatherDisplay /////////////////////////////////////
-
-import React from 'react';
-
-
-function WeatherDisplay({ weatherData, unit, onToggleUnit }) {
-    const { main, weather, wind, name } = weatherData;
-    let temperature = main.temp;
-    
-    if (unit === 'Fahrenheit') {
-      temperature = temperature * 9/5 + 32;
-    }
-
-    return (
-      <div className="weather-display">
-        <h2>Weather in {name}</h2>
-        <img src="https://i.pinimg.com/originals/77/0b/80/770b805d5c99c7931366c2e84e88f251.png" alt="Weather icon" />
-        <p className="temperature">Temperature: {temperature.toFixed(2)}°{unit}</p>
-        <p>Humidity: {main.humidity}%</p>
-        <p>Wind Speed: {wind.speed} m/s</p>
-        <button className="toggle-unit" onClick={onToggleUnit}>Toggle Unit</button>
-      </div>
-    );
-  }
-  
-export default WeatherDisplay;
-
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
